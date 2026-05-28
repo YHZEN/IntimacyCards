@@ -1,0 +1,722 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-05-27",
+  "stats": {
+    "totalCards": 90,
+    "byLevel": { "1": 20, "2": 20, "3": 20, "4": 30 },
+    "byRarity": { "R": 50, "SR": 31, "SSR": 19 },
+    "functionCards": 10
+  },
+  "cards": [
+    {
+      "id": "L1-R-01",
+      "title": "深情对视 30 秒",
+      "description": "凝视对方的眼睛，期间不许说话不许笑场。",
+      "level": 1,
+      "rarity": "R",
+      "type": "action",
+      "tags": ["对视", "静态", "温馨"],
+      "executor": "loser",
+      "duration": 30,
+      "comfortTags": []
+    },
+    {
+      "id": "L1-R-02",
+      "title": "紧紧拥抱一分钟",
+      "description": "抱住对方 60 秒不松开，可数数缓解紧张。",
+      "level": 1, "rarity": "R", "type": "action",
+      "tags": ["拥抱", "温馨"], "executor": "loser", "duration": 60, "comfortTags": []
+    },
+    {
+      "id": "L1-R-03",
+      "title": "真诚夸奖 5 句",
+      "description": "说出对方 5 个具体优点（不许重复）。",
+      "level": 1, "rarity": "R", "type": "truth",
+      "tags": ["真心话", "夸奖"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L1-R-04",
+      "title": "摸头杀",
+      "description": "温柔地揉对方的头 1 分钟。",
+      "level": 1, "rarity": "R", "type": "action",
+      "tags": ["温馨"], "executor": "loser", "duration": 60, "comfortTags": []
+    },
+    {
+      "id": "L1-R-05",
+      "title": "鼻尖蹭鼻尖",
+      "description": "用鼻尖蹭对方鼻尖 10 秒（爱斯基摩吻）。",
+      "level": 1, "rarity": "R", "type": "action",
+      "tags": ["亲昵"], "executor": "loser", "duration": 10, "comfortTags": []
+    },
+    {
+      "id": "L1-R-06",
+      "title": "喂一口零食",
+      "description": "给对方喂一口你正在吃的东西。",
+      "level": 1, "rarity": "R", "type": "action",
+      "tags": ["喂食"], "executor": "loser", "comfortTags": ["food"]
+    },
+    {
+      "id": "L1-R-07",
+      "title": "写一句小情书",
+      "description": "现场写一句最真心的话给对方。",
+      "level": 1, "rarity": "R", "type": "truth",
+      "tags": ["告白"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L1-R-08",
+      "title": "模仿对方说话",
+      "description": "模仿对方语气说一次\"我爱你\"。",
+      "level": 1, "rarity": "R", "type": "action",
+      "tags": ["搞怪"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L1-R-09",
+      "title": "一起合唱一首歌",
+      "description": "任选一首两人都会的歌合唱。",
+      "level": 1, "rarity": "R", "type": "combo",
+      "tags": ["唱歌", "双人"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L1-R-10",
+      "title": "额头吻",
+      "description": "在对方额头上轻轻一吻。",
+      "level": 1, "rarity": "R", "type": "action",
+      "tags": ["亲吻"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L1-R-11",
+      "title": "公主抱 10 秒",
+      "description": "把对方抱起来停留 10 秒。",
+      "level": 1, "rarity": "R", "type": "action",
+      "tags": ["拥抱"], "executor": "loser", "duration": 10, "comfortTags": []
+    },
+    {
+      "id": "L1-R-12",
+      "title": "即兴比心 100 次",
+      "description": "1 分钟内对对方比 100 个心。",
+      "level": 1, "rarity": "R", "type": "action",
+      "tags": ["搞怪", "限时"], "executor": "loser", "duration": 60, "comfortTags": []
+    },
+    {
+      "id": "L1-SR-01",
+      "title": "公主抱走 5 步",
+      "description": "把对方抱起来走 5 步不许放下。",
+      "level": 1, "rarity": "SR", "type": "action",
+      "tags": ["拥抱", "挑战"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L1-SR-02",
+      "title": "蒙眼喂食一颗糖",
+      "description": "蒙住对方眼睛喂一颗糖。",
+      "level": 1, "rarity": "SR", "type": "action",
+      "tags": ["蒙眼", "喂食"], "executor": "loser", "comfortTags": ["food"]
+    },
+    {
+      "id": "L1-SR-03",
+      "title": "一支慢舞",
+      "description": "任意慢歌跳一首，必须身体接触。",
+      "level": 1, "rarity": "SR", "type": "combo",
+      "tags": ["跳舞", "双人"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L1-SR-04",
+      "title": "互背一分钟",
+      "description": "让对方趴在你背上 60 秒。",
+      "level": 1, "rarity": "SR", "type": "action",
+      "tags": ["温馨"], "executor": "loser", "duration": 60, "comfortTags": []
+    },
+    {
+      "id": "L1-SR-05",
+      "title": "写下三个共同愿望",
+      "description": "想三件未来想一起做的事，写下来。",
+      "level": 1, "rarity": "SR", "type": "combo",
+      "tags": ["未来", "双人"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L1-SSR-01",
+      "title": "时光信件",
+      "description": "给三年后的彼此各写一封信，密封保存。",
+      "level": 1, "rarity": "SSR", "type": "combo",
+      "tags": ["仪式感", "未来"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L1-SSR-02",
+      "title": "求婚演练",
+      "description": "单膝跪地说一段求婚词（不论是否已婚）。",
+      "level": 1, "rarity": "SSR", "type": "action",
+      "tags": ["仪式感", "告白"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L1-SSR-03",
+      "title": "完美约会规划",
+      "description": "现场策划一次\"明天就执行\"的约会。",
+      "level": 1, "rarity": "SSR", "type": "combo",
+      "tags": ["未来", "双人"], "executor": "both", "comfortTags": []
+    },
+
+    {
+      "id": "L2-R-01",
+      "title": "耳边轻语\"我爱你\"",
+      "description": "凑到对方耳边用气声说一次。",
+      "level": 2, "rarity": "R", "type": "action",
+      "tags": ["告白", "暧昧"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L2-R-02",
+      "title": "锁骨轻吻",
+      "description": "在对方锁骨处轻吻一下。",
+      "level": 2, "rarity": "R", "type": "action",
+      "tags": ["亲吻", "暧昧"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L2-R-03",
+      "title": "十指紧扣 30 秒",
+      "description": "手指交叉扣紧，期间对视不说话。",
+      "level": 2, "rarity": "R", "type": "action",
+      "tags": ["亲昵"], "executor": "loser", "duration": 30, "comfortTags": []
+    },
+    {
+      "id": "L2-R-04",
+      "title": "嘴对嘴吹一口气",
+      "description": "距离 3cm，吹一口气（不接触）。",
+      "level": 2, "rarity": "R", "type": "action",
+      "tags": ["暧昧"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L2-R-05",
+      "title": "替对方撩头发",
+      "description": "把对方鬓边的头发别到耳后。",
+      "level": 2, "rarity": "R", "type": "action",
+      "tags": ["亲昵"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L2-R-06",
+      "title": "互相喂水",
+      "description": "含一口水递给对方（不许洒）。",
+      "level": 2, "rarity": "R", "type": "combo",
+      "tags": ["双人", "喂食"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L2-R-07",
+      "title": "撒娇式索吻",
+      "description": "用最撒娇的方式求一个吻。",
+      "level": 2, "rarity": "R", "type": "action",
+      "tags": ["亲吻", "撒娇"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L2-R-08",
+      "title": "唇语\"我想要你\"",
+      "description": "不出声做嘴型，让对方读出来。",
+      "level": 2, "rarity": "R", "type": "action",
+      "tags": ["暧昧"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L2-R-09",
+      "title": "脖颈轻吹气 5 秒",
+      "description": "在对方脖颈处轻轻吹气 5 秒。",
+      "level": 2, "rarity": "R", "type": "action",
+      "tags": ["暧昧"], "executor": "loser", "duration": 5, "comfortTags": []
+    },
+    {
+      "id": "L2-R-10",
+      "title": "数对方 5 个可爱处",
+      "description": "找出对方\"明明可爱却装\"的 5 个细节。",
+      "level": 2, "rarity": "R", "type": "truth",
+      "tags": ["真心话", "夸奖"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L2-SR-01",
+      "title": "法式深吻 30 秒",
+      "description": "与对方深吻 30 秒不分开。",
+      "level": 2, "rarity": "SR", "type": "action",
+      "tags": ["亲吻", "暧昧"], "executor": "loser", "duration": 30, "comfortTags": []
+    },
+    {
+      "id": "L2-SR-02",
+      "title": "抚摸脸庞 1 分钟",
+      "description": "用手指描绘对方五官轮廓。",
+      "level": 2, "rarity": "SR", "type": "action",
+      "tags": ["抚摸"], "executor": "loser", "duration": 60, "comfortTags": []
+    },
+    {
+      "id": "L2-SR-03",
+      "title": "蒙眼亲鼻尖",
+      "description": "蒙眼凭感觉找到对方鼻尖并轻吻。",
+      "level": 2, "rarity": "SR", "type": "action",
+      "tags": ["蒙眼", "亲吻"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L2-SR-04",
+      "title": "含住手指 5 秒",
+      "description": "让对方咬住你的手指 5 秒。",
+      "level": 2, "rarity": "SR", "type": "action",
+      "tags": ["暧昧"], "executor": "loser", "duration": 5, "comfortTags": []
+    },
+    {
+      "id": "L2-SR-05",
+      "title": "耳垂吻咬",
+      "description": "轻轻吻咬对方耳垂 10 秒。",
+      "level": 2, "rarity": "SR", "type": "action",
+      "tags": ["亲吻"], "executor": "loser", "duration": 10, "comfortTags": []
+    },
+    {
+      "id": "L2-SR-06",
+      "title": "背后写字猜句",
+      "description": "用手指在对方背上写一句话让对方猜。",
+      "level": 2, "rarity": "SR", "type": "combo",
+      "tags": ["默契", "双人"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L2-SR-07",
+      "title": "互写情诗 4 句",
+      "description": "各写 4 句藏头诗交换（用对方名字）。",
+      "level": 2, "rarity": "SR", "type": "combo",
+      "tags": ["告白", "双人"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L2-SSR-01",
+      "title": "烛光氛围 30 分钟",
+      "description": "立刻点蜡烛 + 放音乐共度 30 分钟。",
+      "level": 2, "rarity": "SSR", "type": "combo",
+      "tags": ["仪式感", "双人"], "executor": "both", "duration": 1800, "comfortTags": []
+    },
+    {
+      "id": "L2-SSR-02",
+      "title": "一夜不松手挑战",
+      "description": "今晚睡觉必须以某种方式接触不松开。",
+      "level": 2, "rarity": "SSR", "type": "combo",
+      "tags": ["挑战", "双人"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L2-SSR-03",
+      "title": "互讲一个秘密",
+      "description": "各分享一个从未对任何人说过的事。",
+      "level": 2, "rarity": "SSR", "type": "truth",
+      "tags": ["真心话", "深度"], "executor": "both", "comfortTags": []
+    },
+
+    {
+      "id": "L3-R-01",
+      "title": "蒙眼喂食 30 秒",
+      "description": "蒙住对方眼睛，喂任意小食。",
+      "level": 3, "rarity": "R", "type": "action",
+      "tags": ["蒙眼", "喂食"], "executor": "loser", "duration": 30, "comfortTags": ["food"]
+    },
+    {
+      "id": "L3-R-02",
+      "title": "颈背按摩 5 分钟",
+      "description": "给对方按摩颈背放松。",
+      "level": 3, "rarity": "R", "type": "action",
+      "tags": ["按摩"], "executor": "loser", "duration": 300, "comfortTags": []
+    },
+    {
+      "id": "L3-R-03",
+      "title": "替对方涂身体乳",
+      "description": "给对方涂手臂或腿部身体乳。",
+      "level": 3, "rarity": "R", "type": "action",
+      "tags": ["抚摸"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L3-R-04",
+      "title": "替对方擦头发",
+      "description": "用毛巾认真为对方擦干头发。",
+      "level": 3, "rarity": "R", "type": "action",
+      "tags": ["照顾"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L3-R-05",
+      "title": "嘴对嘴传糖",
+      "description": "用嘴传递一颗糖给对方。",
+      "level": 3, "rarity": "R", "type": "combo",
+      "tags": ["亲吻", "双人"], "executor": "both", "comfortTags": ["food"]
+    },
+    {
+      "id": "L3-R-06",
+      "title": "唇齿之间传水果",
+      "description": "含一片水果传给对方。",
+      "level": 3, "rarity": "R", "type": "combo",
+      "tags": ["亲吻", "双人"], "executor": "both", "comfortTags": ["food"]
+    },
+    {
+      "id": "L3-R-07",
+      "title": "大腿坐姿 3 分钟",
+      "description": "坐在对方腿上 3 分钟。",
+      "level": 3, "rarity": "R", "type": "action",
+      "tags": ["亲密"], "executor": "loser", "duration": 180, "comfortTags": []
+    },
+    {
+      "id": "L3-R-08",
+      "title": "紧贴慢舞 1 首",
+      "description": "身体紧贴慢舞一首歌。",
+      "level": 3, "rarity": "R", "type": "combo",
+      "tags": ["跳舞", "双人"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L3-SR-01",
+      "title": "锁骨吻路径",
+      "description": "沿对方锁骨亲吻出一条路径。",
+      "level": 3, "rarity": "SR", "type": "action",
+      "tags": ["亲吻"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L3-SR-02",
+      "title": "用冰块滑过皮肤",
+      "description": "用冰块在对方手臂/锁骨划过。",
+      "level": 3, "rarity": "SR", "type": "action",
+      "tags": ["感官"], "executor": "loser", "comfortTags": ["cold"]
+    },
+    {
+      "id": "L3-SR-03",
+      "title": "解开对方一颗扣子",
+      "description": "慢慢解开对方衣物的一颗扣子。",
+      "level": 3, "rarity": "SR", "type": "action",
+      "tags": ["挑逗"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L3-SR-04",
+      "title": "替对方盘起头发",
+      "description": "把头发盘起，亲一下后颈。",
+      "level": 3, "rarity": "SR", "type": "action",
+      "tags": ["亲吻"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L3-SR-05",
+      "title": "蒙眼触碰猜部位",
+      "description": "蒙眼让对方触摸身体某处，猜是哪里。",
+      "level": 3, "rarity": "SR", "type": "combo",
+      "tags": ["蒙眼", "双人"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L3-SR-06",
+      "title": "大腿内侧轻抚 30 秒",
+      "description": "在对方大腿内侧轻抚 30 秒。",
+      "level": 3, "rarity": "SR", "type": "action",
+      "tags": ["抚摸"], "executor": "loser", "duration": 30, "comfortTags": []
+    },
+    {
+      "id": "L3-SR-07",
+      "title": "录一段暧昧语音",
+      "description": "用最低沉的声音录一段情话保存。",
+      "level": 3, "rarity": "SR", "type": "action",
+      "tags": ["录音"], "executor": "loser", "comfortTags": ["voice"]
+    },
+    {
+      "id": "L3-SSR-01",
+      "title": "30 分钟全身按摩",
+      "description": "用精油给对方做 30 分钟全身按摩。",
+      "level": 3, "rarity": "SSR", "type": "action",
+      "tags": ["按摩"], "executor": "loser", "duration": 1800, "comfortTags": []
+    },
+    {
+      "id": "L3-SSR-02",
+      "title": "角色扮演 5 分钟",
+      "description": "随机角色（医生/老师/陌生人）扮演 5 分钟。",
+      "level": 3, "rarity": "SSR", "type": "roleplay",
+      "tags": ["角色扮演"], "executor": "both", "duration": 300, "comfortTags": []
+    },
+    {
+      "id": "L3-SSR-03",
+      "title": "写三个亲密幻想",
+      "description": "各自写三件最想做的事，交换阅读。",
+      "level": 3, "rarity": "SSR", "type": "truth",
+      "tags": ["真心话"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L3-SSR-04",
+      "title": "全程主导 10 分钟",
+      "description": "接下来 10 分钟由 TA 完全主导亲密节奏。",
+      "level": 3, "rarity": "SSR", "type": "action",
+      "tags": ["主导"], "executor": "winner", "duration": 600, "comfortTags": ["dom_sub"]
+    },
+    {
+      "id": "L3-SSR-05",
+      "title": "烛光双人浴",
+      "description": "立即准备烛光浴一起泡 30 分钟。",
+      "level": 3, "rarity": "SSR", "type": "combo",
+      "tags": ["双人", "仪式感"], "executor": "both", "duration": 1800, "comfortTags": []
+    },
+
+    {
+      "id": "L4-R-01",
+      "title": "唇舌全身探索 5 分钟",
+      "description": "用嘴和舌尖在对方全身游走 5 分钟，重点照顾敏感带。",
+      "level": 4, "rarity": "R", "type": "action",
+      "tags": ["18+", "前戏"], "executor": "loser", "duration": 300, "comfortTags": []
+    },
+    {
+      "id": "L4-R-02",
+      "title": "用嘴脱掉内衣",
+      "description": "不许用手，仅用嘴脱掉对方一件贴身衣物。",
+      "level": 4, "rarity": "R", "type": "action",
+      "tags": ["18+", "挑战"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L4-R-03",
+      "title": "全裸相拥 2 分钟",
+      "description": "完全赤裸，紧紧抱住对方 2 分钟。",
+      "level": 4, "rarity": "R", "type": "combo",
+      "tags": ["18+", "亲密"], "executor": "both", "duration": 120, "comfortTags": []
+    },
+    {
+      "id": "L4-R-04",
+      "title": "互相手部抚慰 5 分钟",
+      "description": "用手互相抚摸对方私处 5 分钟。",
+      "level": 4, "rarity": "R", "type": "combo",
+      "tags": ["18+"], "executor": "both", "duration": 300, "comfortTags": ["mutual_mast"]
+    },
+    {
+      "id": "L4-R-05",
+      "title": "大腿根部留吻痕",
+      "description": "在对方大腿内侧留下 2 个吻痕。",
+      "level": 4, "rarity": "R", "type": "action",
+      "tags": ["18+"], "executor": "loser", "comfortTags": ["mark"]
+    },
+    {
+      "id": "L4-R-06",
+      "title": "隔衣按压敏感带 5 分钟",
+      "description": "隔着内衣按压、抚摸对方敏感部位。",
+      "level": 4, "rarity": "R", "type": "action",
+      "tags": ["18+"], "executor": "loser", "duration": 300, "comfortTags": []
+    },
+    {
+      "id": "L4-R-07",
+      "title": "浴室互洗私处",
+      "description": "一起洗澡时认真为对方清洗私处。",
+      "level": 4, "rarity": "R", "type": "combo",
+      "tags": ["18+"], "executor": "both", "comfortTags": ["location_change"]
+    },
+    {
+      "id": "L4-R-08",
+      "title": "全身按摩含敏感带 10 分钟",
+      "description": "用按摩油全身按摩，可经过/停留敏感带。",
+      "level": 4, "rarity": "R", "type": "action",
+      "tags": ["18+", "按摩"], "executor": "loser", "duration": 600, "comfortTags": []
+    },
+    {
+      "id": "L4-R-09",
+      "title": "含住乳尖 1 分钟",
+      "description": "用嘴含住、轻吮对方乳尖 1 分钟。",
+      "level": 4, "rarity": "R", "type": "action",
+      "tags": ["18+"], "executor": "loser", "duration": 60, "comfortTags": []
+    },
+    {
+      "id": "L4-R-10",
+      "title": "互相欣赏裸体 1 分钟",
+      "description": "静静欣赏对方裸体 1 分钟，可口头描述美感。",
+      "level": 4, "rarity": "R", "type": "combo",
+      "tags": ["18+"], "executor": "both", "duration": 60, "comfortTags": []
+    },
+    {
+      "id": "L4-R-11",
+      "title": "边接吻边互摸全身 3 分钟",
+      "description": "深吻同时双手在对方身上自由探索。",
+      "level": 4, "rarity": "R", "type": "combo",
+      "tags": ["18+", "亲吻"], "executor": "both", "duration": 180, "comfortTags": []
+    },
+    {
+      "id": "L4-R-12",
+      "title": "慢速脱光对方",
+      "description": "用 3 分钟时间慢慢把对方衣物全部脱掉。",
+      "level": 4, "rarity": "R", "type": "action",
+      "tags": ["18+", "挑逗"], "executor": "loser", "duration": 180, "comfortTags": []
+    },
+    {
+      "id": "L4-SR-01",
+      "title": "口爱前戏 5 分钟",
+      "description": "给对方做 5 分钟口部爱抚。",
+      "level": 4, "rarity": "SR", "type": "action",
+      "tags": ["18+", "口爱"], "executor": "loser", "duration": 300, "comfortTags": ["oral"]
+    },
+    {
+      "id": "L4-SR-02",
+      "title": "互相口爱 3 分钟",
+      "description": "互相同时口爱 3 分钟（69 式）。",
+      "level": 4, "rarity": "SR", "type": "combo",
+      "tags": ["18+", "口爱"], "executor": "both", "duration": 180, "comfortTags": ["oral"]
+    },
+    {
+      "id": "L4-SR-03",
+      "title": "边缘控制 ×3",
+      "description": "让对方接近高潮 3 次再停下，最后释放。",
+      "level": 4, "rarity": "SR", "type": "action",
+      "tags": ["18+", "挑战"], "executor": "loser", "comfortTags": []
+    },
+    {
+      "id": "L4-SR-04",
+      "title": "体位挑战 5 分钟",
+      "description": "抽到一个新体位（卡上随机），尝试 5 分钟。",
+      "level": 4, "rarity": "SR", "type": "action",
+      "tags": ["18+", "挑战"], "executor": "both", "duration": 300, "comfortTags": []
+    },
+    {
+      "id": "L4-SR-05",
+      "title": "蒙眼手部抚慰至高潮",
+      "description": "蒙住对方眼睛，仅用手让对方到达高潮。",
+      "level": 4, "rarity": "SR", "type": "action",
+      "tags": ["18+", "蒙眼"], "executor": "loser", "comfortTags": ["restraint"]
+    },
+    {
+      "id": "L4-SR-06",
+      "title": "沙发速战 5 分钟",
+      "description": "离开床，在沙发上完成一次 5 分钟性爱。",
+      "level": 4, "rarity": "SR", "type": "combo",
+      "tags": ["18+"], "executor": "both", "duration": 300, "comfortTags": ["location_change"]
+    },
+    {
+      "id": "L4-SR-07",
+      "title": "镜前展示 2 分钟",
+      "description": "在镜子前给对方看自己抚慰自己 2 分钟。",
+      "level": 4, "rarity": "SR", "type": "action",
+      "tags": ["18+"], "executor": "loser", "duration": 120, "comfortTags": ["mirror", "mast_solo"]
+    },
+    {
+      "id": "L4-SR-08",
+      "title": "浴室挑逗不进入 5 分钟",
+      "description": "一起淋浴时挑逗对方到极限但不进入。",
+      "level": 4, "rarity": "SR", "type": "combo",
+      "tags": ["18+", "挑战"], "executor": "both", "duration": 300, "comfortTags": ["location_change"]
+    },
+    {
+      "id": "L4-SR-09",
+      "title": "命令对方自慰 1 分钟",
+      "description": "让对方在你面前自慰 1 分钟，全程不许碰对方。",
+      "level": 4, "rarity": "SR", "type": "action",
+      "tags": ["18+", "主导"], "executor": "loser", "duration": 60, "comfortTags": ["mast_solo", "dom_sub"]
+    },
+    {
+      "id": "L4-SR-10",
+      "title": "露骨言语挑逗 1 分钟",
+      "description": "用最直白的话语挑逗对方 1 分钟，期间不许接触。",
+      "level": 4, "rarity": "SR", "type": "action",
+      "tags": ["18+"], "executor": "loser", "duration": 60, "comfortTags": ["dirty_talk"]
+    },
+    {
+      "id": "L4-SR-11",
+      "title": "站立式紧贴 5 分钟",
+      "description": "站着紧贴对方身体（可隔衣）互相挑逗 5 分钟。",
+      "level": 4, "rarity": "SR", "type": "combo",
+      "tags": ["18+"], "executor": "both", "duration": 300, "comfortTags": []
+    },
+    {
+      "id": "L4-SR-12",
+      "title": "黑暗中互相寻找",
+      "description": "关灯，仅靠触觉找到对方并完成前戏 5 分钟。",
+      "level": 4, "rarity": "SR", "type": "combo",
+      "tags": ["18+", "感官"], "executor": "both", "duration": 300, "comfortTags": []
+    },
+    {
+      "id": "L4-SSR-01",
+      "title": "完整一次 · TA 主导",
+      "description": "由对方完全主导本次做爱，从前戏到结束全程听 TA 的。",
+      "level": 4, "rarity": "SSR", "type": "action",
+      "tags": ["18+", "主导"], "executor": "winner", "comfortTags": ["dom_sub"]
+    },
+    {
+      "id": "L4-SSR-02",
+      "title": "30 分钟挑战",
+      "description": "接下来 30 分钟内不间断的性接触，节奏自定。",
+      "level": 4, "rarity": "SSR", "type": "combo",
+      "tags": ["18+", "挑战"], "executor": "both", "duration": 1800, "comfortTags": []
+    },
+    {
+      "id": "L4-SSR-03",
+      "title": "实现一个性幻想",
+      "description": "输家说出一个埋在心里的性幻想，赢家立即实现它。",
+      "level": 4, "rarity": "SSR", "type": "wish",
+      "tags": ["18+", "心愿"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L4-SSR-04",
+      "title": "主导/服从 1 小时",
+      "description": "一方完全主导一方完全服从 1 小时，可含蒙眼、轻约束。",
+      "level": 4, "rarity": "SSR", "type": "roleplay",
+      "tags": ["18+", "主导", "角色扮演"], "executor": "both", "duration": 3600, "comfortTags": ["dom_sub", "restraint"]
+    },
+    {
+      "id": "L4-SSR-05",
+      "title": "三体位连续挑战",
+      "description": "一次性体验三个新体位，每个至少 3 分钟。",
+      "level": 4, "rarity": "SSR", "type": "combo",
+      "tags": ["18+", "挑战"], "executor": "both", "comfortTags": []
+    },
+    {
+      "id": "L4-SSR-06",
+      "title": "慢爱 30 分钟（Tantric）",
+      "description": "极慢节奏的 30 分钟亲密，强调感官与情感连接。",
+      "level": 4, "rarity": "SSR", "type": "combo",
+      "tags": ["18+", "感官"], "executor": "both", "duration": 1800, "comfortTags": []
+    }
+  ],
+  "functionCards": [
+    {
+      "id": "F01",
+      "title": "跳过卡",
+      "description": "立即跳过本次任务，不计入跳过次数。",
+      "rarity": "R",
+      "effect": "skip_free"
+    },
+    {
+      "id": "F02",
+      "title": "重抽卡",
+      "description": "弃掉当前卡，重新抽一张。",
+      "rarity": "R",
+      "effect": "redraw"
+    },
+    {
+      "id": "F03",
+      "title": "反转卡",
+      "description": "任务转由赢家完成。",
+      "rarity": "SR",
+      "effect": "reverse_executor"
+    },
+    {
+      "id": "F04",
+      "title": "镜像卡",
+      "description": "任务由双方同时完成。",
+      "rarity": "SR",
+      "effect": "mirror_both"
+    },
+    {
+      "id": "F05",
+      "title": "加注卡",
+      "description": "完成本次任务奖励 ×2 亲密度。",
+      "rarity": "SR",
+      "effect": "double_reward"
+    },
+    {
+      "id": "F06",
+      "title": "降级卡",
+      "description": "把任务等级 −1，重抽一张更柔和的。",
+      "rarity": "R",
+      "effect": "downgrade_redraw"
+    },
+    {
+      "id": "F07",
+      "title": "升级卡",
+      "description": "把任务等级 +1，重抽更大胆的。",
+      "rarity": "SSR",
+      "effect": "upgrade_redraw"
+    },
+    {
+      "id": "F08",
+      "title": "协助卡",
+      "description": "任务改为双人配合完成。",
+      "rarity": "SR",
+      "effect": "set_both"
+    },
+    {
+      "id": "F09",
+      "title": "心愿卡",
+      "description": "输家可向赢家提一个心愿替代本次任务。",
+      "rarity": "SSR",
+      "effect": "wish_replace"
+    },
+    {
+      "id": "F10",
+      "title": "时光卡",
+      "description": "重新执行图鉴中已完成过的任意一张卡。",
+      "rarity": "SSR",
+      "effect": "replay_album"
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+name: intimacy_cards
+description: "A private intimate card-drawing app for couples in love."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.4.0
+  flutter: ">=3.22.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # 状态管理
+  flutter_riverpod: ^2.5.1
+
+  # 路由
+  go_router: ^14.2.7
+
+  # 本地数据
+  sqflite: ^2.3.3
+  sqflite_common_ffi_web: ^0.4.2+3
+  path: ^1.9.0
+  path_provider: ^2.1.4
+
+  # 安全
+  flutter_secure_storage: ^9.2.2
+  local_auth: ^2.3.0
+  encrypt: ^5.0.3
+
+  # UI / 字体 / 动效
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.0
+
+  # 音频 / 触觉
+  just_audio: ^0.9.40
+
+  # 实用
+  intl: ^0.19.0
+  uuid: ^4.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/data/
+    - assets/images/
+    - assets/images/avatars/
+    - assets/sounds/
