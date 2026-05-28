@@ -10,6 +10,7 @@ import '../../core/theme/app_text_styles.dart';
 import '../../data/models/couple_profile.dart';
 import '../../providers.dart';
 import '../../router.dart';
+import '../../shared/widgets/avatar_icon.dart';
 import '../../shared/widgets/gold_button.dart';
 import '../../shared/widgets/midnight_scaffold.dart';
 import 'widgets/card_back_3d.dart';
@@ -219,7 +220,7 @@ class _HomeBody extends ConsumerWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(avatar.emoji, style: const TextStyle(fontSize: 16)),
+            AvatarIcon(avatar: avatar, size: 16),
             const SizedBox(width: 8),
             Text('当前: ${profile.activeName}',
                 style: AppTextStyles.bodySmall

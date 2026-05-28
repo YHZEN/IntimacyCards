@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'data/database/app_database.dart';
 import 'data/models/couple_profile.dart';
 import 'data/models/diary_entry.dart';
+import 'data/models/intimacy_card.dart';
 import 'data/repositories/card_repository.dart';
 import 'data/repositories/couple_repository.dart';
 import 'data/repositories/diary_repository.dart';
@@ -66,6 +67,10 @@ final coupleProfileProvider =
 // ---- 卡片计数（图鉴用）----
 final cardCountsProvider = FutureProvider<Map<int, int>>((ref) async {
   return ref.read(cardRepoProvider).countsByLevel();
+});
+
+final customCardsProvider = FutureProvider<List<IntimacyCard>>((ref) async {
+  return ref.read(cardRepoProvider).customCards();
 });
 
 final collectedCardIdsProvider = FutureProvider<Set<String>>((ref) async {

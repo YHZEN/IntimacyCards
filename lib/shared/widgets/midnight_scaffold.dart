@@ -9,6 +9,7 @@ class MidnightScaffold extends StatelessWidget {
   final bool extendBodyBehindAppBar;
   final bool showCornerGlow;
   final Widget? drawer;
+  final Widget? floatingActionButton;
 
   const MidnightScaffold({
     super.key,
@@ -17,6 +18,7 @@ class MidnightScaffold extends StatelessWidget {
     this.extendBodyBehindAppBar = true,
     this.showCornerGlow = true,
     this.drawer,
+    this.floatingActionButton,
   });
 
   @override
@@ -26,6 +28,7 @@ class MidnightScaffold extends StatelessWidget {
       extendBodyBehindAppBar: extendBodyBehindAppBar,
       appBar: appBar,
       drawer: drawer,
+      floatingActionButton: floatingActionButton,
       body: Container(
         decoration: const BoxDecoration(gradient: AppColors.bgGradient),
         child: Stack(

@@ -1,4 +1,4 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,12 +12,17 @@ import '../../../router.dart';
 import '../../../services/security_service.dart';
 import '../../../shared/widgets/midnight_scaffold.dart';
 
-class LevelSelectPage extends ConsumerWidget {
-  const LevelSelectPage({super.key});
+/// 对战等级选择 · 复用 Lv.4 门禁
+class BattleLevelSelectPage extends ConsumerWidget {
+  const BattleLevelSelectPage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final counts = ref.watch(cardCountsProvider).valueOrNull ?? {};
+    final rounds = int.tryParse(
+          GoRouterState.of(context).uri.queryParameters['rounds'] ?? '5',
+        ) ??
+        5;
 
     return MidnightScaffold(
       appBar: AppBar(
@@ -25,24 +30,31 @@ class LevelSelectPage extends ConsumerWidget {
           icon: const Icon(Icons.arrow_back_ios_new, size: 18),
           onPressed: () => context.pop(),
         ),
-        title: Text('选择今晚的氛围', style: AppTextStyles.titleMedium),
+        title: Text('对战 · 选择氛围', style: AppTextStyles.titleMedium),
         centerTitle: true,
       ),
       child: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 20, 20, 32),
           children: [
+            Text(
+              '$rounds 回合制 · 赢家抽卡输家执行',
+              textAlign: TextAlign.center,
+              style: AppTextStyles.bodySmall,
+            ),
+            const SizedBox(height: 16),
             for (final level in AppConstants.levels)
-              _LevelCard(
+              _BattleLevelCard(
                 level: level,
                 count: counts[level.level] ?? 0,
                 accent: _levelColor(level.level),
                 locked: level.level == 4,
                 emptyHint: level.isCustomPool,
+                rounds: rounds,
               ).animate().fadeIn(
                     duration: 360.ms,
                     delay: (level.level * 80).ms,
-                  ).slideY(begin: 0.1, end: 0),
+                  ),
           ],
         ),
       ),
@@ -59,22 +71,24 @@ class LevelSelectPage extends ConsumerWidget {
       };
 }
 
-class _LevelCard extends ConsumerWidget {
+class _BattleLevelCard extends ConsumerWidget {
   final LevelInfo level;
   final int count;
   final Color accent;
   final bool locked;
   final bool emptyHint;
+  final int rounds;
 
-  const _LevelCard({
+  const _BattleLevelCard({
     required this.level,
     required this.count,
     required this.accent,
     required this.locked,
+    required this.rounds,
     this.emptyHint = false,
   });
 
-  Future<void> _onTap(BuildContext context, WidgetRef ref) async {
+  Future<void> _onTap(BuildContext context) async {
     HapticFeedback.mediumImpact();
 
     if (emptyHint && count == 0) {
@@ -83,11 +97,6 @@ class _LevelCard extends ConsumerWidget {
           content: Text('还没有自制卡，先去写一张吧 ✎',
               style: AppTextStyles.bodySmall),
           backgroundColor: AppColors.surfaceAlt,
-          action: SnackBarAction(
-            label: '去写',
-            textColor: AppColors.primary,
-            onPressed: () => context.push(Routes.customCard),
-          ),
         ),
       );
       return;
@@ -98,7 +107,9 @@ class _LevelCard extends ConsumerWidget {
       if (!ok) return;
     }
     if (context.mounted) {
-      context.push('${Routes.drawCharging}?level=${level.level}');
+      context.push(
+        '${Routes.battleFlow}?level=${level.level}&rounds=$rounds',
+      );
     }
   }
 
@@ -107,7 +118,6 @@ class _LevelCard extends ConsumerWidget {
     final hasPin = await security.hasLv4Pin();
 
     if (!hasPin) {
-      // 首次进入：弹同意书 + 设置密码
       final controller = TextEditingController();
       bool? agreed = false;
       final accepted = await showDialog<bool>(
@@ -124,10 +134,7 @@ class _LevelCard extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      '此分级包含成人内容。继续意味着双方：\n'
-                      '· 都已年满 18 周岁\n'
-                      '· 自愿参与，可随时说出"安全词"暂停\n'
-                      '· 同意以下卡片可能涉及性内容\n',
+                      '此分级包含成人内容。继续意味着双方都已年满 18 周岁且自愿参与。',
                       style: AppTextStyles.bodyMedium,
                     ),
                     const SizedBox(height: 12),
@@ -140,25 +147,19 @@ class _LevelCard extends ConsumerWidget {
                       controlAffinity: ListTileControlAffinity.leading,
                       contentPadding: EdgeInsets.zero,
                     ),
-                    const SizedBox(height: 4),
-                    Text('设置 6 位独立密码（建议与主密码不同）',
-                        style: AppTextStyles.bodySmall),
                     const SizedBox(height: 8),
                     TextField(
                       controller: controller,
-                      onChanged: (_) => setState(() {}),
                       keyboardType: TextInputType.number,
                       maxLength: 6,
                       obscureText: true,
-                      autofocus: true,
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
                       ],
                       style: AppTextStyles.titleMedium,
-                      cursorColor: AppColors.primary,
                       decoration: const InputDecoration(
                         counterText: '',
-                        hintText: '••••••',
+                        hintText: '设置 6 位 Lv.4 密码',
                       ),
                     ),
                   ],
@@ -167,9 +168,7 @@ class _LevelCard extends ConsumerWidget {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(ctx, false),
-                  child: Text('取消',
-                      style: AppTextStyles.bodyMedium
-                          .copyWith(color: AppColors.textSecondary)),
+                  child: const Text('取消'),
                 ),
                 TextButton(
                   onPressed: agreed == true && controller.text.length == 6
@@ -178,9 +177,7 @@ class _LevelCard extends ConsumerWidget {
                           if (ctx.mounted) Navigator.pop(ctx, true);
                         }
                       : null,
-                  child: Text('解锁',
-                      style: AppTextStyles.bodyMedium
-                          .copyWith(color: AppColors.primary)),
+                  child: const Text('解锁'),
                 ),
               ],
             );
@@ -190,7 +187,6 @@ class _LevelCard extends ConsumerWidget {
       return accepted ?? false;
     }
 
-    // 已设置密码：弹密码验证
     final inputCtl = TextEditingController();
     final ok = await showDialog<bool>(
       context: context,
@@ -199,15 +195,12 @@ class _LevelCard extends ConsumerWidget {
         return StatefulBuilder(builder: (ctx, setState) {
           return AlertDialog(
             backgroundColor: AppColors.surface,
-            title: Text('🔒 输入 Lv.4 密码',
-                style: AppTextStyles.titleMedium),
+            title: Text('🔒 输入 Lv.4 密码', style: AppTextStyles.titleMedium),
             content: TextField(
               controller: inputCtl,
-              onChanged: (_) => setState(() => errorText = null),
               keyboardType: TextInputType.number,
               maxLength: 6,
               obscureText: true,
-              autofocus: true,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               style: AppTextStyles.titleMedium,
               decoration: InputDecoration(
@@ -219,16 +212,15 @@ class _LevelCard extends ConsumerWidget {
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(ctx, false),
-                child: Text('取消',
-                    style: AppTextStyles.bodyMedium
-                        .copyWith(color: AppColors.textSecondary)),
+                child: const Text('取消'),
               ),
               TextButton(
                 onPressed: inputCtl.text.length == 6
                     ? () async {
-                        final ok = await security.verifyLv4Pin(inputCtl.text);
+                        final verified =
+                            await security.verifyLv4Pin(inputCtl.text);
                         if (!ctx.mounted) return;
-                        if (ok) {
+                        if (verified) {
                           Navigator.pop(ctx, true);
                         } else {
                           setState(() => errorText = '密码不正确');
@@ -236,9 +228,7 @@ class _LevelCard extends ConsumerWidget {
                         }
                       }
                     : null,
-                child: Text('确认',
-                    style: AppTextStyles.bodyMedium
-                        .copyWith(color: AppColors.primary)),
+                child: const Text('确认'),
               ),
             ],
           );
@@ -253,7 +243,7 @@ class _LevelCard extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: GestureDetector(
-        onTap: () => _onTap(context, ref),
+        onTap: () => _onTap(context),
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
           decoration: BoxDecoration(
@@ -263,75 +253,23 @@ class _LevelCard extends ConsumerWidget {
               color: locked ? AppColors.danger : accent.withOpacity(0.6),
               width: 1.5,
             ),
-            boxShadow: [
-              BoxShadow(
-                color: accent.withOpacity(0.2),
-                blurRadius: 24,
-                spreadRadius: 0,
-              ),
-            ],
           ),
           child: Row(
             children: [
-              Container(
-                width: 48,
-                height: 48,
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: RadialGradient(
-                    colors: [
-                      accent.withOpacity(0.5),
-                      Colors.transparent,
-                    ],
-                  ),
-                ),
-                child: Text(level.symbol,
-                    style: AppTextStyles.titleLarge.copyWith(color: accent)),
-              ),
+              Text(level.symbol,
+                  style: AppTextStyles.titleLarge.copyWith(color: accent)),
               const SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Text('Lv.${level.level} ',
-                            style: AppTextStyles.titleMedium
-                                .copyWith(color: accent)),
-                        Text(level.name,
-                            style: AppTextStyles.titleMedium),
-                      ],
-                    ),
-                    const SizedBox(height: 4),
+                    Text('Lv.${level.level} ${level.name}',
+                        style: AppTextStyles.titleMedium),
                     Text(level.tagline, style: AppTextStyles.bodySmall),
                   ],
                 ),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  if (locked)
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8, vertical: 3),
-                      decoration: BoxDecoration(
-                        color: AppColors.danger.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text('需密码',
-                          style: AppTextStyles.caption
-                              .copyWith(color: AppColors.danger)),
-                    )
-                  else
-                    Text('$count 张',
-                        style: AppTextStyles.bodySmall
-                            .copyWith(color: AppColors.primary)),
-                  const SizedBox(height: 6),
-                  Icon(Icons.chevron_right,
-                      color: accent.withOpacity(0.7), size: 20),
-                ],
-              ),
+              Text('$count 张', style: AppTextStyles.bodySmall),
             ],
           ),
         ),

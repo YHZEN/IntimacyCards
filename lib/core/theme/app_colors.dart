@@ -30,6 +30,7 @@ class AppColors {
   static const Color level2 = Color(0xFF9B59B6);
   static const Color level3 = Color(0xFF8B3A62);
   static const Color level4 = Color(0xFFFF1744);
+  static const Color level5 = Color(0xFFC9A961);
 
   /// 主背景渐变（顶部更暗，底部偏紫）
   static const LinearGradient bgGradient = LinearGradient(

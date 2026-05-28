@@ -8,6 +8,7 @@ class AppConstants {
     2: {'R': 0.60, 'SR': 0.30, 'SSR': 0.10},
     3: {'R': 0.50, 'SR': 0.35, 'SSR': 0.15},
     4: {'R': 0.50, 'SR': 0.35, 'SSR': 0.15},
+    5: {'R': 0.55, 'SR': 0.35, 'SSR': 0.10},
   };
 
   static const int pityThreshold = 10;
@@ -17,7 +18,10 @@ class AppConstants {
   static const Map<String, int> rarityScore = {'R': 10, 'SR': 30, 'SSR': 80};
 
   // 跳过限制（PRD §9.2）
-  static const Map<int, int> dailySkipLimit = {1: 3, 2: 3, 3: 3, 4: 6};
+  static const Map<int, int> dailySkipLimit = {1: 3, 2: 3, 3: 3, 4: 6, 5: 3};
+
+  /// 虚拟等级：仅抽取自制卡
+  static const int customOnlyLevel = 5;
 
   // 等级元数据
   static const List<LevelInfo> levels = [
@@ -25,6 +29,13 @@ class AppConstants {
     LevelInfo(level: 2, name: '心动暧昧', tagline: '亲吻·耳语·撒娇', symbol: '♡'),
     LevelInfo(level: 3, name: '亲密互动', tagline: '按摩·蒙眼·游戏', symbol: '❦'),
     LevelInfo(level: 4, name: '私密大胆', tagline: '✦  仅限 18+  ✦', symbol: '🔒'),
+    LevelInfo(
+      level: 5,
+      name: '定制的爱',
+      tagline: '只属于你俩的独家卡牌',
+      symbol: '✎',
+      isCustomPool: true,
+    ),
   ];
 }
 
@@ -33,10 +44,13 @@ class LevelInfo {
   final String name;
   final String tagline;
   final String symbol;
+  final bool isCustomPool;
+
   const LevelInfo({
     required this.level,
     required this.name,
     required this.tagline,
     required this.symbol,
+    this.isCustomPool = false,
   });
 }

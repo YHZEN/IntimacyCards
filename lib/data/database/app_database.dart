@@ -11,7 +11,7 @@ import '../models/intimacy_card.dart';
 /// SQLite 数据库 · PRD §10.3
 class AppDatabase {
   static const _dbName = 'intimacy_cards.db';
-  static const _dbVersion = 1;
+  static const _dbVersion = 2;
   static Database? _db;
 
   AppDatabase._();
@@ -30,6 +30,7 @@ class AppDatabase {
       path,
       version: _dbVersion,
       onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
     );
     return _db!;
   }
@@ -115,7 +116,36 @@ class AppDatabase {
       )
     ''');
 
+    await _createPoolLevelsTable(db);
     await _seedCards(db);
+  }
+
+  static Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
+    if (oldVersion < 2) {
+      await _createPoolLevelsTable(db);
+      await db.execute('''
+        INSERT OR IGNORE INTO card_pool_levels (card_id, level)
+        SELECT id, level FROM cards
+      ''');
+    }
+  }
+
+  static Future<void> _createPoolLevelsTable(Database db) async {
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS card_pool_levels (
+        card_id TEXT NOT NULL,
+        level INTEGER NOT NULL,
+        PRIMARY KEY (card_id, level),
+        FOREIGN KEY (card_id) REFERENCES cards(id) ON DELETE CASCADE
+      )
+    ''');
+  }
+
+  static Future<void> _seedPoolLevels(Database db) async {
+    await db.execute('''
+      INSERT OR IGNORE INTO card_pool_levels (card_id, level)
+      SELECT id, level FROM cards WHERE is_custom = 0
+    ''');
   }
 
   /// 从 assets/data/cards.json 写入预置卡牌
@@ -142,6 +172,7 @@ class AppDatabase {
       }, conflictAlgorithm: ConflictAlgorithm.replace);
     }
     await batch.commit(noResult: true);
+    await _seedPoolLevels(db);
   }
 
   /// 仅供测试 / 调试：清空并重新播种

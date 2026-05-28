@@ -10,6 +10,7 @@ import '../../../core/theme/app_text_styles.dart';
 import '../../../data/models/couple_profile.dart';
 import '../../../providers.dart';
 import '../../../router.dart';
+import '../../../shared/widgets/avatar_icon.dart';
 
 /// 主页左上角菜单滑出抽屉：信息总览 + 各等级图鉴进度 + 快捷操作。
 class HomeDrawer extends ConsumerWidget {
@@ -33,6 +34,16 @@ class HomeDrawer extends ConsumerWidget {
                   const SizedBox(height: 16),
                   _levelProgress(ref),
                   const SizedBox(height: 8),
+                  _divider(),
+                  _menuItem(
+                    context,
+                    icon: Icons.sports_kabaddi,
+                    label: '对战模式',
+                    onTap: () {
+                      Navigator.pop(context);
+                      context.push(Routes.battle);
+                    },
+                  ),
                   _divider(),
                   _menuItem(
                     context,
@@ -129,13 +140,13 @@ class HomeDrawer extends ConsumerWidget {
         children: [
           Row(
             children: [
-              _miniAvatar(mine.emoji, mine.tint),
+              _miniAvatar(mine),
               const SizedBox(width: 8),
               Icon(Icons.favorite,
                   size: 16,
                   color: AppColors.danger.withOpacity(0.85)),
               const SizedBox(width: 8),
-              _miniAvatar(ta.emoji, ta.tint),
+              _miniAvatar(ta),
               const Spacer(),
               IconButton(
                 onPressed: () => Navigator.pop(context),
@@ -159,7 +170,7 @@ class HomeDrawer extends ConsumerWidget {
     );
   }
 
-  Widget _miniAvatar(String emoji, Color tint) {
+  Widget _miniAvatar(PresetAvatar avatar) {
     return Container(
       width: 36,
       height: 36,
@@ -167,9 +178,9 @@ class HomeDrawer extends ConsumerWidget {
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: AppColors.surface,
-        border: Border.all(color: tint.withOpacity(0.5), width: 1.5),
+        border: Border.all(color: avatar.tint.withOpacity(0.5), width: 1.5),
       ),
-      child: Text(emoji, style: const TextStyle(fontSize: 18)),
+      child: AvatarIcon(avatar: avatar, size: 18),
     );
   }
 
@@ -254,6 +265,7 @@ class HomeDrawer extends ConsumerWidget {
       2 => AppColors.level2,
       3 => AppColors.level3,
       4 => AppColors.level4,
+      5 => AppColors.level5,
       _ => AppColors.primary,
     };
     final pct = total == 0 ? 0.0 : (got / total).clamp(0.0, 1.0);

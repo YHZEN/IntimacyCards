@@ -14,6 +14,8 @@ class IntimacyCard {
   final List<String> comfortTags;
   final bool isCustom;
   final bool enabled;
+  /// 自制卡混入的等级池（1–4）；Lv.5「定制的爱」始终包含全部自制卡
+  final List<int> poolLevels;
 
   const IntimacyCard({
     required this.id,
@@ -28,7 +30,40 @@ class IntimacyCard {
     this.comfortTags = const [],
     this.isCustom = false,
     this.enabled = true,
+    this.poolLevels = const [],
   });
+
+  IntimacyCard copyWith({
+    String? id,
+    String? title,
+    String? description,
+    int? level,
+    CardRarity? rarity,
+    String? type,
+    List<String>? tags,
+    CardExecutor? executor,
+    int? durationSeconds,
+    List<String>? comfortTags,
+    bool? isCustom,
+    bool? enabled,
+    List<int>? poolLevels,
+  }) {
+    return IntimacyCard(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      description: description ?? this.description,
+      level: level ?? this.level,
+      rarity: rarity ?? this.rarity,
+      type: type ?? this.type,
+      tags: tags ?? this.tags,
+      executor: executor ?? this.executor,
+      durationSeconds: durationSeconds ?? this.durationSeconds,
+      comfortTags: comfortTags ?? this.comfortTags,
+      isCustom: isCustom ?? this.isCustom,
+      enabled: enabled ?? this.enabled,
+      poolLevels: poolLevels ?? this.poolLevels,
+    );
+  }
 
   factory IntimacyCard.fromJson(Map<String, dynamic> json) {
     return IntimacyCard(

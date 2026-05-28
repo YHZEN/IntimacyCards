@@ -7,7 +7,6 @@ import '../../../core/theme/app_colors.dart';
 import '../../../core/theme/app_text_styles.dart';
 import '../../../data/models/card_rarity.dart';
 import '../../../data/models/diary_entry.dart';
-import '../../../data/models/intimacy_card.dart';
 import '../../../providers.dart';
 import '../../../shared/widgets/gold_button.dart';
 import '../../diary/widgets/diary_capture_sheet.dart';
@@ -15,6 +14,20 @@ import '../engine/draw_engine.dart';
 import '../engine/function_card_handler.dart';
 import 'card_flip_2d.dart';
 import 'rarity_burst.dart';
+
+/// 对战模式翻牌上下文
+class BattleRevealContext {
+  final String winnerName;
+  final String loserName;
+  final void Function({required bool completed, required int roundScore})
+      onFinished;
+
+  const BattleRevealContext({
+    required this.winnerName,
+    required this.loserName,
+    required this.onFinished,
+  });
+}
 
 /// 翻牌底部弹层：支持单张 / 十连
 ///
@@ -26,11 +39,13 @@ import 'rarity_burst.dart';
 class CardRevealSheet extends ConsumerStatefulWidget {
   final List<DrawResult> results;
   final int drawLevel;
+  final BattleRevealContext? battleContext;
 
   const CardRevealSheet({
     super.key,
     required this.results,
     required this.drawLevel,
+    this.battleContext,
   });
 
   @override
@@ -64,6 +79,37 @@ class _CardRevealSheetState extends ConsumerState<CardRevealSheet> {
 
   // ----------------------------- 任务卡：接受 -----------------------------
 
+  String _executorNameFor(DrawResult result) {
+    final battle = widget.battleContext;
+    if (battle == null) {
+      return ref.read(coupleProfileProvider).valueOrNull?.activeName ?? '';
+    }
+    return switch (result.effectiveExecutor) {
+      CardExecutor.loser => battle.loserName,
+      CardExecutor.winner => battle.winnerName,
+      CardExecutor.both => '${battle.winnerName} & ${battle.loserName}',
+    };
+  }
+
+  String? _executorLabelFor(DrawResult result) {
+    final battle = widget.battleContext;
+    if (battle == null) {
+      final profile = ref.read(coupleProfileProvider).valueOrNull;
+      if (profile == null || result.taskCard == null) return null;
+      return switch (result.effectiveExecutor) {
+        CardExecutor.loser => '由 ${profile.activeName} 完成',
+        CardExecutor.winner => '由 ${profile.inactiveName} 完成',
+        CardExecutor.both => '两人一起完成',
+      };
+    }
+    if (result.taskCard == null) return null;
+    return switch (result.effectiveExecutor) {
+      CardExecutor.loser => '由 ${battle.loserName} 完成',
+      CardExecutor.winner => '由 ${battle.winnerName} 完成',
+      CardExecutor.both => '两人一起完成',
+    };
+  }
+
   Future<void> _accept() async {
     if (_processing) return;
     HapticFeedback.mediumImpact();
@@ -72,14 +118,14 @@ class _CardRevealSheetState extends ConsumerState<CardRevealSheet> {
 
     setState(() => _processing = true);
     final card = result.taskCard!;
-    final executorName =
-        ref.read(coupleProfileProvider).valueOrNull?.activeName ?? '';
+    final executorName = _executorNameFor(result);
+    final isBattle = widget.battleContext != null;
 
     await ref.read(drawRepoProvider).insert(
           cardId: card.id,
           isCompleted: true,
           isSkipped: false,
-          isBattle: false,
+          isBattle: isBattle,
           executorName: executorName,
         );
     final reward = card.rarity.score * result.rewardMultiplier;
@@ -89,6 +135,18 @@ class _CardRevealSheetState extends ConsumerState<CardRevealSheet> {
     if (!mounted) {
       return;
     }
+
+    if (isBattle) {
+      widget.battleContext!.onFinished(
+        completed: true,
+        roundScore: card.rarity.score * result.rewardMultiplier,
+      );
+      if (!mounted) return;
+      setState(() => _processing = false);
+      _gotoNext();
+      return;
+    }
+
     final captured = await DiaryCaptureSheet.show(
       context,
       cardTitle: card.title,
@@ -122,18 +180,18 @@ class _CardRevealSheetState extends ConsumerState<CardRevealSheet> {
   Future<void> _skip() async {
     if (_processing) return;
     HapticFeedback.lightImpact();
+    final isBattle = widget.battleContext != null;
     if (_current.isTask) {
       await ref.read(drawRepoProvider).insert(
             cardId: _current.taskCard!.id,
             isCompleted: false,
             isSkipped: true,
-            isBattle: false,
-            executorName: ref
-                    .read(coupleProfileProvider)
-                    .valueOrNull
-                    ?.activeName ??
-                '',
+            isBattle: isBattle,
+            executorName: _executorNameFor(_current),
           );
+    }
+    if (isBattle) {
+      widget.battleContext!.onFinished(completed: false, roundScore: 0);
     }
     _gotoNext();
   }
@@ -347,14 +405,9 @@ class _CardRevealSheetState extends ConsumerState<CardRevealSheet> {
     final title = card?.title ?? fn?.title ?? '';
     final desc = result.customWishText ?? card?.description ?? fn?.description ?? '';
 
-    final profile = ref.read(coupleProfileProvider).valueOrNull;
     String? executorLabel;
-    if (card != null && profile != null) {
-      executorLabel = switch (result.effectiveExecutor) {
-        CardExecutor.loser => '由 ${profile.activeName} 完成',
-        CardExecutor.winner => '由 ${profile.inactiveName} 完成',
-        CardExecutor.both => '两人一起完成',
-      };
+    if (card != null) {
+      executorLabel = _executorLabelFor(result);
     }
 
     final body = Container(

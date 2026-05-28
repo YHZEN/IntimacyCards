@@ -8,12 +8,14 @@ class PresetAvatar {
   final String name;
   final String emoji;
   final Color tint;
+  final bool customIcon;
 
   const PresetAvatar({
     required this.id,
     required this.name,
     required this.emoji,
     required this.tint,
+    this.customIcon = false,
   });
 }
 
@@ -23,6 +25,13 @@ class Avatars {
   static const List<PresetAvatar> all = [
     PresetAvatar(id: 'deer', name: '鹿', emoji: '🦌', tint: Color(0xFFB89968)),
     PresetAvatar(id: 'fox', name: '狐', emoji: '🦊', tint: Color(0xFFD17A4F)),
+    PresetAvatar(
+      id: 'fish',
+      name: '鱼',
+      emoji: '🐠',
+      tint: Color(0xFF5BA4B8),
+      customIcon: true,
+    ),
     PresetAvatar(id: 'cat', name: '猫', emoji: '🐱', tint: Color(0xFF9B59B6)),
     PresetAvatar(id: 'rabbit', name: '兔', emoji: '🐰', tint: Color(0xFFE08FA8)),
     PresetAvatar(id: 'dog', name: '犬', emoji: '🐶', tint: Color(0xFFA88848)),

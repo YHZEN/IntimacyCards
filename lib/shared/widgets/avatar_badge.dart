@@ -2,6 +2,7 @@
 
 import '../../core/constants/avatars.dart';
 import '../../core/theme/app_colors.dart';
+import 'avatar_icon.dart';
 
 class AvatarBadge extends StatelessWidget {
   final PresetAvatar avatar;
@@ -43,10 +44,7 @@ class AvatarBadge extends StatelessWidget {
               : null,
         ),
         alignment: Alignment.center,
-        child: Text(
-          avatar.emoji,
-          style: TextStyle(fontSize: size * 0.55),
-        ),
+        child: AvatarIcon(avatar: avatar, size: size * (avatar.customIcon ? 0.72 : 0.55)),
       ),
     );
   }
